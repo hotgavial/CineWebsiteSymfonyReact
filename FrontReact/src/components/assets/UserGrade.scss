@@ -1,0 +1,15 @@
+.user-grade {
+    width: 100%;
+    display: flex;
+    font-size: 2rem;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.hovered {
+    color: blue;
+}
+
+.checked {
+    color: orange;
+}
