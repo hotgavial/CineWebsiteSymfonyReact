@@ -4,8 +4,7 @@ import './assets/SpectatorsGrade.scss';
 function SpectatorsGrade(props) {
     return (
         <div className='spectators-grade'>
-            <div>Note Moyenne des spectateurs</div>
-            <div className="spectators-grade__grade">{props.averageRating}</div>
+            <div className={props.insert ? 'spectators-grade__grade--insert' : 'spectators-grade__grade'}>{props.averageRating !== null ? props.averageRating : '-'}</div>
         </div>
     );
 }

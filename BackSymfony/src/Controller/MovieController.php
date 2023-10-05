@@ -16,7 +16,16 @@ class MovieController extends AbstractController
      */
     public function getMovieInfo(MovieRepository $movieRepository, $id): Response
     {
-        $movies = $movieRepository->find($id);
+        $movie = $movieRepository->find($id);
+        return $this->json($movie, 200, [], ['groups' => 'movie_info']);
+    }
+
+    /**
+     * @Route("/home-page-movies", name="home_page_movies", methods={"GET"})
+     */
+    public function getHomePageMovies(MovieRepository $movieRepository)
+    {
+        $movies = $movieRepository->findBY([], [], 10);
         return $this->json($movies, 200, [], ['groups' => 'movie_info']);
     }
 

@@ -1,0 +1,12 @@
+.poster-img {
+
+    &__img {
+        max-height: 350px;
+        width: 250px;
+        padding-bottom: 1rem;
+
+        &--insert {
+            width: 100px;
+        }
+    }
+}
