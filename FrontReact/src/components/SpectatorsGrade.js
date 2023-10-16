@@ -22,7 +22,7 @@ function SpectatorsGrade(props) {
             if (props.averageRating >= 7) {
                 return 'green 0.4rem solid';
             } if (props.averageRating >= 6) {
-                return 'ykhaki 0.4rem solid';
+                return 'khaki 0.4rem solid';
             } if (props.averageRating >= 5.0) {
                 return 'coral 0.4rem solid';
             }

@@ -6,12 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="users")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -39,6 +40,22 @@ class User
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="user")
      */
     private $reviews;
+
+    private $roles;
+
+    private $plainPassword;
+
+
+    public function getRoles()
+    {
+        $roles = ['ROLE_USER'];
+        return $roles;
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
 
     public function getId(): ?int
     {
@@ -109,5 +126,30 @@ class User
         }
 
         return $this;
+    }
+
+    public function getUsername()
+    {
+        // Retournez le pseudo de l'utilisateur comme identifiant unique
+        return $this->pseudo;
+    }
+
+    public function getSalt()
+    {
+        // Générez et retournez un sel unique pour l'utilisateur
+        // Si vous ne l'utilisez pas, retournez null
+        return null;
+    }
+
+    public function getUserIdentifier()
+    {
+        // Retournez l'identifiant unique de l'utilisateur
+        return $this->pseudo;
+    }
+
+    public function eraseCredentials()
+    {
+        // Effacez les informations sensibles de l'utilisateur, par exemple, le mot de passe en texte brut
+        $this->plainPassword = null;
     }
 }
